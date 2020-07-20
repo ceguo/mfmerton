@@ -21,7 +21,7 @@ def datagen(noblgr, nfctr):
 def mcsim(s, lgd, xl, xs, a, b, c, nsmp, ncdf=np.vectorize(statistics.NormalDist(0,1).cdf)):
     x = rnd.normal(xl, xs, (nsmp, xl.shape[0]))
     u = rnd.uniform(0, 1, (nsmp, b.shape[0]))
-    return np.sum(s*lgd*np.where(u<ncdf((c-b*(x@a))/np.sqrt(1-b*b)),1,0),axis=1)
+    return np.sum(s*lgd*(u<ncdf((c-b*(x@a))/np.sqrt(1-b*b))), axis=1)
 
 if __name__ == '__main__':
     noblgr = 1000
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     rnd.seed(200719)
     tic = time.time()
-    lsmp = mcsim(s, lgd, xl, xs, a, b, c, 100000)
+    lsmp = mcsim(s, lgd, xl, xs, a, b, c, 20000)
     qtl = np.quantile(lsmp, np.arange(0.1, 1.0, 0.1))
     toc = time.time()
 
