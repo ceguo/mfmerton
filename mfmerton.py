@@ -36,5 +36,5 @@ if __name__ == '__main__':
     toc = time.time()
 
     print('Quantiles: ', qtl)
-    print('Executio time: ', toc - tic)
+    print('Execution time: ', toc - tic)
 
